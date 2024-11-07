@@ -1,0 +1,52 @@
+{% extends "layouts/base.html" %}
+
+
+{% block contenido %}
+<header>
+    <h1>Página de registro de usuarios</h1>
+</header>
+
+<main class="container">
+    <section>
+        <form method="post">
+            {% csrf_token %}
+            {% load widget_tweaks %}
+    
+            <div class="form-group">
+                <label for="id_username">Nombre de usuario:</label>
+                <div class="col-md-6">
+                    {{ form.username|add_class:"form-control" }}
+                </div>
+                <small class="form-text text-muted">Requerido. 150 caracteres como máximo. Únicamente letras, dígitos y @/./+/-/_</small>
+            </div>
+    
+            <div class="form-group">
+                <label for="id_password1">Contraseña:</label>
+                <div class="col-md-6">
+                    {{ form.password1|add_class:"form-control" }}
+                </div>
+                <small class="form-text text-muted">
+                    <ul>
+                        <li>Su contraseña no puede asemejarse tanto a su otra información personal.</li>
+                        <li>Su contraseña debe contener al menos 8 caracteres.</li>
+                        <li>Su contraseña no puede ser una clave utilizada comúnmente.</li>
+                        <li>Su contraseña no puede ser completamente numérica.</li>
+                    </ul>
+                </small>
+            </div>
+    
+            <div class="form-group">
+                <label for="id_password2">Contraseña (confirmación):</label>
+                <div class="col-md-6">
+                    {{ form.password2|add_class:"form-control" }}
+                </div>
+                <small class="form-text text-muted">Para verificar, introduzca la misma contraseña anterior.</small>
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Crear usuario</button>
+    
+        </form>
+    </section>
+</main>
+
+{% endblock contenido %}
